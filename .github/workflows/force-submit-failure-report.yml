@@ -1,10 +1,7 @@
 name: Force submit failure report
 
 jobs:
-  test:
-    runs-on: ['self-hosted', 'ubuntu', 'x64', 'standard']
+  deploy:
+    runs-on: ubuntu-latest
     steps:
-      - name: Show Environment
-        env:
-          SELECTED_ENV: ${{ inputs.environment }}
-        run: echo "selected: $SELECTED_ENV"
+      - run: echo "Hello world"
