@@ -2,9 +2,13 @@ name: Force submit failure report
 
 on:
   workflow_dispatch:
+    inputs:
+
 
 jobs:
   deploy:
+    name: "Desploy to production"
     runs-on: ubuntu-latest
     steps:
+
       - run: echo "Hello world"
