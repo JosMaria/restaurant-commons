@@ -25,6 +25,12 @@ jobs:
     timeout-minutes: 15
     environment:
       name: ${{ inputs.environment || 'prod' }}
+    env:
+      DB_PORT: ${{ vars.DATABASE_PORT }}
+      DB_NAME: ${{ secrets.DATABASE_NAME }}
     steps:
       - name: Show environment
-        run: echo "Hello world, env ${{ inputs.environment }}"
+        run: |
+          echo "Hello world, env ${{ inputs.environment }}"
+          echo "Port, $DB_PORT"
+          echo "Name, $DB_NAME, depends context"
