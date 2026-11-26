@@ -3,12 +3,22 @@ name: Force submit failure report
 on:
   workflow_dispatch:
     inputs:
-
+      environment:
+        description: environment
+        type: choice
+        required: true
+        default: dev
+        options:
+          - dev
+          - qastg
+          - prod
 
 jobs:
   deploy:
-    name: "Desploy to production"
+    name: Desploy to production # side bar title
     runs-on: ubuntu-latest
     steps:
-
-      - run: echo "Hello world"
+      - name: Show environment
+        env:
+          SELECTED_ENV: ${{ inputs.environment }}
+        run: echo "Hello world, env $SELECTED_ENV"
