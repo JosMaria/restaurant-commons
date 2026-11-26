@@ -4,21 +4,27 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: environment
-        type: choice
+        description: Environment to report
         required: true
-        default: dev
+        type: choice
+        default: qastg
         options:
           - dev
           - qastg
+          - qalv
           - prod
+  schedule:
+    - cron: "0 0 * * *"
+
+permissions: {}
 
 jobs:
-  deploy:
-    name: Desploy to production # side bar title
+  report:
+    name: Report force submit count mismatches # side bar title
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: ${{ inputs.environment || 'prod' }}
     steps:
       - name: Show environment
-        env:
-          SELECTED_ENV: ${{ inputs.environment }}
-        run: echo "Hello world, env $SELECTED_ENV"
+        run: echo "Hello world, env ${{ inputs.environment }}"
