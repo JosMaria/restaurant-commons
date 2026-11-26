@@ -28,9 +28,11 @@ jobs:
     env:
       DB_PORT: ${{ vars.DATABASE_PORT }}
       DB_NAME: ${{ secrets.DATABASE_NAME }}
+      DB_URL: ${{ vars.DATABASE_URL }}
     steps:
       - name: Show environment
         run: |
           echo "Hello world, env ${{ inputs.environment }}"
           echo "Port, $DB_PORT"
           echo "Name, $DB_NAME, depends context"
+          echo "database url, $DB_URL, depends context"
